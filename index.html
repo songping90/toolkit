@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工具應用暨新知統整錦囊 - 師培AI計畫</title>
+    <!-- 引入 Tailwind CSS (負責排版與美觀) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Lucide Icons (負責圖示) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* 確保平滑捲動 */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* 自定義捲動位置修正 (避免被導覽列擋住) */
+        section {
+            scroll-margin-top: 8rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 py-4 bg-transparent text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2 cursor-pointer group" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
+                    <div id="nav-icon-bg" class="p-2 rounded-xl transition-colors bg-white/20 backdrop-blur-sm text-white">
+                        <i data-lucide="graduation-cap" class="w-7 h-7"></i>
+                    </div>
+                    <span id="nav-text" class="font-bold text-2xl tracking-tight transition-colors text-white">
+                        師培AI計畫
+                    </span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-1">
+                    <button onclick="scrollToSection('part1')" class="nav-btn px-4 py-2 rounded-full font-medium transition-all text-base lg:text-lg text-white/90 hover:bg-white/20 hover:text-white">實用新知</button>
+                    <button onclick="scrollToSection('part_aigo')" class="nav-btn px-4 py-2 rounded-full font-medium transition-all text-base lg:text-lg text-white/90 hover:bg-white/20 hover:text-white">AI-GO框架</button>
+                    <button onclick="scrollToSection('part2')" class="nav-btn px-4 py-2 rounded-full font-medium transition-all text-base lg:text-lg text-white/90 hover:bg-white/20 hover:text-white">資訊快報</button>
+                    <button onclick="scrollToSection('part3')" class="nav-btn px-4 py-2 rounded-full font-medium transition-all text-base lg:text-lg text-white/90 hover:bg-white/20 hover:text-white">技術手冊</button>
+                    <button onclick="scrollToSection('part4')" class="nav-btn px-4 py-2 rounded-full font-medium transition-all text-base lg:text-lg text-white/90 hover:bg-white/20 hover:text-white">學習地圖</button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button onclick="toggleMenu()" id="mobile-menu-btn" class="p-2 rounded-lg transition-colors text-white">
+                        <i data-lucide="menu" class="w-8 h-8"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white border-b border-gray-100 shadow-xl">
+            <div class="px-4 py-4 space-y-3">
+                <button onclick="scrollToSection('part1')" class="flex items-center w-full px-4 py-4 text-left text-gray-600 font-medium text-lg hover:bg-indigo-50 hover:text-indigo-600 rounded-xl transition">
+                    <i data-lucide="zap" class="w-6 h-6 mr-3"></i> 實用新知
+                </button>
+                <button onclick="scrollToSection('part_aigo')" class="flex items-center w-full px-4 py-4 text-left text-gray-600 font-medium text-lg hover:bg-indigo-50 hover:text-indigo-600 rounded-xl transition">
+                    <i data-lucide="layers" class="w-6 h-6 mr-3"></i> AI-GO框架
+                </button>
+                <button onclick="scrollToSection('part2')" class="flex items-center w-full px-4 py-4 text-left text-gray-600 font-medium text-lg hover:bg-indigo-50 hover:text-indigo-600 rounded-xl transition">
+                    <i data-lucide="newspaper" class="w-6 h-6 mr-3"></i> 資訊快報
+                </button>
+                <button onclick="scrollToSection('part3')" class="flex items-center w-full px-4 py-4 text-left text-gray-600 font-medium text-lg hover:bg-indigo-50 hover:text-indigo-600 rounded-xl transition">
+                    <i data-lucide="book-open" class="w-6 h-6 mr-3"></i> 技術手冊
+                </button>
+                <button onclick="scrollToSection('part4')" class="flex items-center w-full px-4 py-4 text-left text-gray-600 font-medium text-lg hover:bg-indigo-50 hover:text-indigo-600 rounded-xl transition">
+                    <i data-lucide="map" class="w-6 h-6 mr-3"></i> 學習地圖
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-24 px-4 text-center bg-indigo-700 overflow-hidden shadow-lg mb-12">
+        <!-- Background Gradient: Warmer Blue (Blue to Indigo) -->
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-600 via-indigo-600 to-blue-800"></div>
+
+        <!-- Abstract Tech Elements -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none select-none">
+            <!-- Chip (CPU) - Top Left - 替換回晶片圖示 -->
+            <div class="absolute -top-10 -left-10 text-white/10 rotate-12">
+                <i data-lucide="cpu" class="w-96 h-96"></i>
+            </div>
+            
+            <!-- Book (Education) - Bottom Right -->
+            <div class="absolute -bottom-24 -right-24 text-white/10 -rotate-12">
+                <i data-lucide="book-open" class="w-96 h-96"></i>
+            </div>
+            
+            <!-- Soft Glow Effects -->
+            <div class="absolute top-0 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl mix-blend-overlay"></div>
+            <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl mix-blend-overlay"></div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto">
+            <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-indigo-50 text-base font-medium mb-8 backdrop-blur-sm shadow-sm">
+                <i data-lucide="star" class="w-5 h-5 mr-2 text-yellow-300 fill-yellow-300"></i>
+                陳佩英教授計畫團隊
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-tight drop-shadow-lg">
+                工具應用暨新知統整錦囊
+            </h1>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 pb-32">
+        
+        <!-- Part 1: 實用 AI 新知分享 -->
+        <section id="part1">
+            <div class="flex items-center space-x-4 mb-10 ml-2">
+                <div class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-600/30">
+                    <i data-lucide="zap" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-900">實用 AI 新知分享</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Card 1 -->
+                <a href="https://smart-teaching-era-tm8j6tp.gamma.site/" target="_blank" rel="noopener noreferrer" 
+                   class="group relative bg-white rounded-2xl p-10 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 overflow-hidden border border-gray-100 block">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="bg-blue-100 text-blue-700 p-4 rounded-xl">
+                                <i data-lucide="layout" class="w-7 h-7"></i>
+                            </div>
+                            <i data-lucide="external-link" class="w-6 h-6 text-gray-300 group-hover:text-blue-600 transition-colors"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">0115實用新知分享</h3>
+                        <p class="text-gray-500 text-base mb-6">Practical Knowledge Sharing</p>
+                        <div class="flex items-center text-blue-600 font-bold text-base">
+                            立即瀏覽 <i data-lucide="chevron-right" class="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 2 -->
+                <a href="https://ai-tools-education-v7rhhtw.gamma.site/#section2" target="_blank" rel="noopener noreferrer" 
+                   class="group relative bg-white rounded-2xl p-10 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 overflow-hidden border border-gray-100 block">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-purple-50 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="bg-purple-100 text-purple-700 p-4 rounded-xl">
+                                <i data-lucide="layout" class="w-7 h-7"></i>
+                            </div>
+                            <i data-lucide="external-link" class="w-6 h-6 text-gray-300 group-hover:text-purple-600 transition-colors"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">0123實用新知分享</h3>
+                        <p class="text-gray-500 text-base mb-6">Practical Knowledge Sharing</p>
+                        <div class="flex items-center text-purple-600 font-bold text-base">
+                            立即瀏覽 <i data-lucide="chevron-right" class="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Part AI-GO: AI-GO 框架 -->
+        <section id="part_aigo">
+            <div class="flex items-center space-x-4 mb-8 ml-2">
+                <div class="w-12 h-12 rounded-full bg-violet-600 flex items-center justify-center text-white shadow-lg shadow-violet-600/30">
+                    <i data-lucide="layers" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-900">AI-GO 教學框架</h2>
+            </div>
+
+            <a href="https://gemini.google.com/share/b7053337b3c7" target="_blank" rel="noopener noreferrer" 
+               class="group block relative overflow-hidden bg-white rounded-2xl border border-violet-100 shadow-lg hover:shadow-xl hover:border-violet-300 transition-all duration-300">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-violet-50 rounded-full -mr-20 -mt-20 transition-transform group-hover:scale-110 duration-500"></div>
+                <div class="relative z-10 p-10 flex flex-col md:flex-row items-center gap-10">
+                    <div class="flex-1">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="bg-violet-100 text-violet-700 text-sm font-bold px-3 py-1 rounded uppercase tracking-wider">Framework</span>
+                        </div>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-6 group-hover:text-violet-700 transition-colors">深入了解 AI-GO 框架</h3>
+                        <div class="flex items-center text-violet-600 font-bold text-lg">
+                            查看完整框架內容 <i data-lucide="arrow-right" class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                    <div class="hidden md:flex flex-shrink-0 w-28 h-28 bg-white rounded-2xl shadow-sm items-center justify-center border border-violet-100 group-hover:scale-105 transition-transform">
+                        <i data-lucide="layers" class="w-12 h-12 text-violet-500"></i>
+                    </div>
+                </div>
+            </a>
+        </section>
+
+        <!-- Part 2: AI 教育資訊快報 -->
+        <section id="part2">
+            <div class="flex items-center space-x-4 mb-8 ml-2">
+                <div class="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center text-white shadow-lg shadow-indigo-600/30">
+                    <i data-lucide="newspaper" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-900">AI 教育資訊快報</h2>
+            </div>
+
+            <a href="https://gemini.google.com/share/e901b557350e" target="_blank" rel="noopener noreferrer" 
+               class="group block relative overflow-hidden bg-gradient-to-r from-indigo-600 to-blue-600 rounded-2xl p-1 shadow-xl hover:shadow-2xl hover:scale-[1.01] transition-all duration-300">
+                <div class="bg-white rounded-xl p-8 sm:p-10 h-full">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-8">
+                        <div class="flex-1">
+                            <h3 class="text-3xl font-bold text-gray-900 mb-4 group-hover:text-indigo-600 transition-colors">前往閱讀</h3>
+                            <p class="text-gray-600 font-medium text-lg">教育部長專題演講及國內外大學指引綜整</p>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <div class="w-14 h-14 rounded-full bg-indigo-50 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                                <i data-lucide="arrow-right" class="w-7 h-7"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </section>
+
+        <!-- Part 3: 基礎工作坊技術應用手冊 -->
+        <section id="part3">
+            <div class="flex items-center space-x-4 mb-8 ml-2">
+                <div class="w-12 h-12 rounded-full bg-emerald-600 flex items-center justify-center text-white shadow-lg shadow-emerald-600/30">
+                    <i data-lucide="book-open" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-900">基礎工作坊技術應用手冊</h2>
+            </div>
+
+            <a href="https://songping90.github.io/basicworkshop-manual/" target="_blank" rel="noopener noreferrer" 
+               class="group block bg-white rounded-2xl border border-emerald-100 shadow-lg hover:shadow-xl hover:border-emerald-300 transition-all duration-300 overflow-hidden">
+                <div class="flex flex-col md:flex-row">
+                    <div class="p-10 md:w-3/4">
+                        <h3 class="text-3xl font-bold text-gray-900 mb-4 group-hover:text-emerald-700 transition-colors">基礎工作坊技術應用彙編</h3>
+                        <p class="text-gray-600 mb-8 leading-relaxed text-lg">提供完整基礎工作坊工具教學與步驟指引</p>
+                        <div class="inline-flex items-center font-bold text-emerald-600 text-lg border-b-2 border-transparent group-hover:border-emerald-600 transition-all">
+                            開啟手冊 <i data-lucide="external-link" class="w-5 h-5 ml-2"></i>
+                        </div>
+                    </div>
+                    <div class="bg-emerald-50 p-8 md:w-1/4 flex items-center justify-center border-l border-emerald-100">
+                        <i data-lucide="book-open" class="w-20 h-20 text-emerald-200 group-hover:text-emerald-500 group-hover:scale-110 transition-all duration-300"></i>
+                    </div>
+                </div>
+            </a>
+        </section>
+
+        <!-- Part 4: 基礎工作坊教學內容統整圖 -->
+        <section id="part4">
+            <div class="flex items-center space-x-4 mb-10 ml-2">
+                <div class="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center text-white shadow-lg shadow-orange-500/30">
+                    <i data-lucide="map" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-900">基礎工作坊教學內容統整圖</h2>
+            </div>
+
+            <div class="space-y-16" id="images-container">
+                <!-- 圖片 1 -->
+                <div class="group bg-white p-6 md:p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 max-w-5xl mx-auto">
+                    <div class="overflow-hidden rounded-2xl bg-gray-100 mb-8 relative shadow-inner">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors z-10 pointer-events-none"></div>
+                        <img src="images/map1.jpg" alt="學習重點 1" class="w-full h-auto object-contain" 
+                             onerror="this.onerror=null;this.src='https://placehold.co/1200x800/e2e8f0/64748b?text=Image+Not+Found'">
+                    </div>
+                    <div class="flex items-center justify-between px-2">
+                        <h4 class="text-2xl md:text-3xl font-bold text-gray-800">學習重點 1</h4>
+                        <span class="text-base text-gray-500 bg-gray-100 px-4 py-2 rounded-full">長按或右鍵可儲存圖片</span>
+                    </div>
+                </div>
+
+                <!-- 圖片 2 -->
+                <div class="group bg-white p-6 md:p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 max-w-5xl mx-auto">
+                    <div class="overflow-hidden rounded-2xl bg-gray-100 mb-8 relative shadow-inner">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors z-10 pointer-events-none"></div>
+                        <img src="images/map2.jpg" alt="學習重點 2" class="w-full h-auto object-contain" 
+                             onerror="this.onerror=null;this.src='https://placehold.co/1200x800/e2e8f0/64748b?text=Image+Not+Found'">
+                    </div>
+                    <div class="flex items-center justify-between px-2">
+                        <h4 class="text-2xl md:text-3xl font-bold text-gray-800">學習重點 2</h4>
+                        <span class="text-base text-gray-500 bg-gray-100 px-4 py-2 rounded-full">長按或右鍵可儲存圖片</span>
+                    </div>
+                </div>
+
+                <!-- 圖片 3 -->
+                <div class="group bg-white p-6 md:p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 max-w-5xl mx-auto">
+                    <div class="overflow-hidden rounded-2xl bg-gray-100 mb-8 relative shadow-inner">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors z-10 pointer-events-none"></div>
+                        <img src="images/map3.jpg" alt="學習重點 3" class="w-full h-auto object-contain" 
+                             onerror="this.onerror=null;this.src='https://placehold.co/1200x800/e2e8f0/64748b?text=Image+Not+Found'">
+                    </div>
+                    <div class="flex items-center justify-between px-2">
+                        <h4 class="text-2xl md:text-3xl font-bold text-gray-800">學習重點 3</h4>
+                        <span class="text-base text-gray-500 bg-gray-100 px-4 py-2 rounded-full">長按或右鍵可儲存圖片</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-100 py-16">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="flex justify-center items-center space-x-3 mb-6 text-indigo-600">
+                <i data-lucide="graduation-cap" class="w-8 h-8"></i>
+                <span class="font-bold text-2xl">師培AI計畫</span>
+            </div>
+            <p class="text-gray-500 text-lg">陳佩英教授計畫團隊</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // 初始化 Lucide 圖示
+        lucide.createIcons();
+
+        // 導覽列滾動效果
+        const navbar = document.getElementById('navbar');
+        const navIconBg = document.getElementById('nav-icon-bg');
+        const navText = document.getElementById('nav-text');
+        const navBtns = document.querySelectorAll('.nav-btn');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                // Scrolled State
+                navbar.classList.remove('bg-transparent', 'py-4');
+                navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-md', 'py-2');
+                
+                navIconBg.classList.remove('bg-white/20', 'text-white');
+                navIconBg.classList.add('bg-indigo-600', 'text-white');
+                
+                navText.classList.remove('text-white');
+                navText.classList.add('text-gray-900');
+                
+                mobileMenuBtn.classList.remove('text-white');
+                mobileMenuBtn.classList.add('text-gray-600');
+
+                navBtns.forEach(btn => {
+                    btn.classList.remove('text-white/90', 'hover:bg-white/20', 'hover:text-white');
+                    btn.classList.add('text-gray-600', 'hover:bg-indigo-50', 'hover:text-indigo-600');
+                });
+            } else {
+                // Top State
+                navbar.classList.add('bg-transparent', 'py-4');
+                navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-md', 'py-2');
+                
+                navIconBg.classList.add('bg-white/20', 'text-white');
+                navIconBg.classList.remove('bg-indigo-600', 'text-white');
+                
+                navText.classList.add('text-white');
+                navText.classList.remove('text-gray-900');
+
+                mobileMenuBtn.classList.add('text-white');
+                mobileMenuBtn.classList.remove('text-gray-600');
+
+                navBtns.forEach(btn => {
+                    btn.classList.add('text-white/90', 'hover:bg-white/20', 'hover:text-white');
+                    btn.classList.remove('text-gray-600', 'hover:bg-indigo-50', 'hover:text-indigo-600');
+                });
+            }
+        });
+
+        // 手機版選單切換
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // 捲動到指定區塊
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('mobile-menu').classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
